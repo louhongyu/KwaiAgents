@@ -40,6 +40,7 @@ GOAL:{goal}
 
 当已完成的Tasks已经能够帮助回答这个目标，则尽可能生成任务完成Task，否则生成一个其他Task。一个新Task:
 """.strip()
+#strip()去除字符串两端的空白字符（空格、制表符、换行符等），并返回去除后的新字符串。
 
 planning_prompt_template_en = """
 You are a {agent_name}，{agent_bio}
@@ -173,6 +174,7 @@ def make_no_task_conclusion_prompt(query, conversation_history=""):
     return prompt
 
 
+#截断输入的提示字符串，以确保其长度不超过指定的最大长度，并且尽可能地保留提示中与记忆内容相对应的部分。
 def prompt_truncate(tokenizer, prompt, memory, input_max_length):
     kwargs = dict(add_special_tokens=False)
     prompt_tokens = tokenizer.encode(prompt, **kwargs)
